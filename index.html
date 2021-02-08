@@ -20,26 +20,42 @@
 
 
           <!-- Filtro genere musicale -->
-          <div>
-            <select v-model="filterGenre" multiple>
-              <option>A</option>
-              <option>B</option>
-              <option>C</option>
+          <div class="genere">
+            <span>Genere selezionato: {{ filterGenre }}</span>
+            <h2>filtro statico</h2>
+            <select class="selezione-genere"
+                    v-model="filterGenre"
+                    placeholder="Seleziona un genere musicale"
+                    @change="filtraArrayGenere">
+              <option></option>
+              <option>Pop</option>
+              <option>Jazz</option>
+              <option>Rock</option>
+            </select>
+
+            <h2>filtro dinamico</h2>
+            <select class="selezione-genere"
+                    v-model="filterGenre"
+                    placeholder="Seleziona un genere musicale"
+                    @change="filtraArrayGenere">
+              <option v-for="opt in listaGeneri">{{opt}}</option>
             </select>
             <br>
-            <span>Selected: {{ filterGenre }}</span>
+
           </div>
           <!-- /Filtro genere musicale -->
 
           <div class="cds-container container">
-                            <!-- LISTA DISCHI -->
-              <div v-for="disco in arrayDischi" class="cd">
-                <img :src="disco.poster" alt="">
-                <h3>{{disco.title}}</h3>
-                <span class="author">{{disco.author}}</span>
-                <span class="year">{{disco.year}}</span>
-              </div>
-              <!-- /LISTA DISCHI -->
+
+            <!-- LISTA DISCHI -->
+            <div v-for="disco in selectArray()" class="cd">
+              <img :src="disco.poster" alt="">
+              <h3>{{disco.title}}</h3>
+              <span class="author">{{disco.author}}</span>
+              <span class="year">{{disco.year}}</span>
+            </div>
+            <!-- /LISTA DISCHI -->
+
           </div>
 
         </div>

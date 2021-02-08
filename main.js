@@ -12,11 +12,14 @@ var app = new Vue ({
   el: '#root',
   data: {
     arrayDischi: [],
-    filterGenre: null
+    arrayFiltered: [],
+    listaGeneri: ['genere1', 'genere2','genere3'],
+    filterGenre: null,
+    filterActive: false
   },
   mounted() {
     this.getDischi();
-    // this.getDisco();
+    this.getGenres();
 
   },
   methods: {
@@ -25,31 +28,59 @@ var app = new Vue ({
     },
     getDischi: function(){
       const self = this;
-      // for (var i = 0; i < 10; i++) {
         // Prendi mail generata dal link
         axios.get('https://flynn.boolean.careers/exercises/api/array/music').then(function(objReceived){
                const result = objReceived.data.response;
                self.arrayDischi = result;
              });
-        // }
 
       },
-      filterGenre: function(){
-        
-      }
-      // getDisco: function(){
-      //   const self = this;
-      //   // for (var i = 0; i < 10; i++) {
-      //     // Prendi mail generata dal link
-      //     axios.get('https://flynn.boolean.careers/exercises/api/array/music').then(function(objReceived){
-      //            const result = objReceived.data.response;
-      //            self.pushElement(result);
-      //          });
-      //     console.log(result);
-      //   // }
-      // }
+      filtraArrayGenere: function(){
+        // FILTRO DISATTIVATO
+        if(this.filterGenre === ''){
+          alert('disattivo filtro');
+          this.filterActive = false;
+        }else{
+          // FILTRO ATTIVATO
+          this.filterActive = true;
+          this.arrayFiltered = this.arrayDischi.filter( (element, index) =>{
+            return this.arrayDischi[index].genre === this.filterGenre
+          });
 
-      // }
+          console.log(this.arrayFiltered);
+        }
+
+      },
+      selectArray: function(){
+        if (!this.filterActive){
+          return this.arrayDischi;
+        }else{
+          return this.arrayFiltered;
+        }
+
+      },
+      getGenres: function(){
+        console.log('Aggiungo i generi musicali');
+
+        this.arrayDischi.forEach( (element, index) =>{
+          // AGGIUNGI SOLO NUOVI GENERI
+          console.log('Inizio il foreach');
+          console.log(item)
+          console.log(item)
+          if(this.listaDischi.indexOf(item) >-1){
+            console.log('Nuovo genere trovato');
+             this.listaGeneri.push(item);
+          }
+        });
+
+            // if(this.listaDischi.indexOf(item) >-1){
+            //   this.listaGeneri.push(item);
+            // }
+            console.log(this.listaGeneri);
+
+
+
+      }
 
     }
 
