@@ -13,14 +13,16 @@ var app = new Vue ({
   data: {
     arrayDischi: [],
     arrayFiltered: [],
-    listaGeneri: ['genere1', 'genere2','genere3'],
+    listaGeneri: [],
     filterGenre: null,
     filterActive: false
   },
   mounted() {
     this.getDischi();
+  },
+  beforeUpdate(){
+    // alert('beforeUpdate');
     this.getGenres();
-
   },
   methods: {
     pushElement: function (elemento){
@@ -38,7 +40,6 @@ var app = new Vue ({
       filtraArrayGenere: function(){
         // FILTRO DISATTIVATO
         if(this.filterGenre === ''){
-          alert('disattivo filtro');
           this.filterActive = false;
         }else{
           // FILTRO ATTIVATO
@@ -47,7 +48,7 @@ var app = new Vue ({
             return this.arrayDischi[index].genre === this.filterGenre
           });
 
-          console.log(this.arrayFiltered);
+          // console.log(this.arrayFiltered);
         }
 
       },
@@ -60,23 +61,22 @@ var app = new Vue ({
 
       },
       getGenres: function(){
-        console.log('Aggiungo i generi musicali');
+        // console.log('Aggiungo i generi musicali');
 
-        this.arrayDischi.forEach( (element, index) =>{
+        this.arrayDischi.forEach( (item, index) =>{
           // AGGIUNGI SOLO NUOVI GENERI
-          console.log('Inizio il foreach');
-          console.log(item)
-          console.log(item)
-          if(this.listaDischi.indexOf(item) >-1){
-            console.log('Nuovo genere trovato');
-             this.listaGeneri.push(item);
+          // console.log(item.genre)
+          // console.log(this.listaGeneri.indexOf(item.genre));
+          if(this.listaGeneri.indexOf(item.genre) <0){
+            // console.log('Nuovo genere trovato');
+             this.listaGeneri.push(item.genre);
           }
         });
 
             // if(this.listaDischi.indexOf(item) >-1){
             //   this.listaGeneri.push(item);
             // }
-            console.log(this.listaGeneri);
+            // console.log(this.listaGeneri);
 
 
 
