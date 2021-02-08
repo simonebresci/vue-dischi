@@ -21,24 +21,12 @@
 
           <!-- Filtro genere musicale -->
           <div class="genere">
-            <span>Genere selezionato: {{ filterGenre }}</span>
-            <!-- <h2>filtro statico</h2>
+            <h2>Filtro dinamico Genere</h2>
             <select class="selezione-genere"
                     v-model="filterGenre"
-                    placeholder="Seleziona un genere musicale"
                     @change="filtraArrayGenere">
-              <option></option>
-              <option>Pop</option>
-              <option>Jazz</option>
-              <option>Rock</option>
-            </select> -->
-
-            <h2>filtro dinamico</h2>
-            <select class="selezione-genere"
-                    v-model="filterGenre"
-                    placeholder="Seleziona un genere musicale"
-                    @change="filtraArrayGenere">
-              <option></option>
+              <option disabled value="">Please select one</option>
+              <option> </option> <!--Opzione per disattivare filtro -->
               <option v-for="opt in listaGeneri">{{opt}}</option>
             </select>
 

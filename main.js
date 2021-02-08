@@ -8,6 +8,8 @@
 // https://bitbucket.org/booleancareers/ex-dischi-musicali-layout
 
 
+// TODO: placeholder filtro genere
+
 var app = new Vue ({
   el: '#root',
   data: {
@@ -18,10 +20,11 @@ var app = new Vue ({
     filterActive: false
   },
   mounted() {
+    // Recupera dischi da endpoint esterno
     this.getDischi();
   },
   beforeUpdate(){
-    // alert('beforeUpdate');
+    // Popola il filtro con i tutti i genere dei dischi caricati
     this.getGenres();
   },
   methods: {
@@ -48,11 +51,11 @@ var app = new Vue ({
             return this.arrayDischi[index].genre === this.filterGenre
           });
 
-          // console.log(this.arrayFiltered);
         }
 
       },
       selectArray: function(){
+        // SELEEZIONA ARRAY DA MOSTRARE
         if (!this.filterActive){
           return this.arrayDischi;
         }else{
@@ -61,25 +64,12 @@ var app = new Vue ({
 
       },
       getGenres: function(){
-        // console.log('Aggiungo i generi musicali');
-
         this.arrayDischi.forEach( (item, index) =>{
           // AGGIUNGI SOLO NUOVI GENERI
-          // console.log(item.genre)
-          // console.log(this.listaGeneri.indexOf(item.genre));
           if(this.listaGeneri.indexOf(item.genre) <0){
-            // console.log('Nuovo genere trovato');
              this.listaGeneri.push(item.genre);
           }
         });
-
-            // if(this.listaDischi.indexOf(item) >-1){
-            //   this.listaGeneri.push(item);
-            // }
-            // console.log(this.listaGeneri);
-
-
-
       }
 
     }
