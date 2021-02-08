@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>ex-dischi-musicali</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="root">
+
+          <header>
+              <div class="container">
+                  <img src="logo.png" alt="logo" />
+              </div>
+          </header>
+
+
+          <!-- Filtro genere musicale -->
+          <div>
+            <select v-model="filterGenre" multiple>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </select>
+            <br>
+            <span>Selected: {{ filterGenre }}</span>
+          </div>
+          <!-- /Filtro genere musicale -->
+
+          <div class="cds-container container">
+                            <!-- LISTA DISCHI -->
+              <div v-for="disco in arrayDischi" class="cd">
+                <img :src="disco.poster" alt="">
+                <h3>{{disco.title}}</h3>
+                <span class="author">{{disco.author}}</span>
+                <span class="year">{{disco.year}}</span>
+              </div>
+              <!-- /LISTA DISCHI -->
+          </div>
+
+        </div>
+        <!-- /Root -->
+
+
+        <script src="main.js" charset="utf-8"></script>
+    </body>
+</html>
